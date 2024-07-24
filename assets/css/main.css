@@ -2966,6 +2966,7 @@ input, select, textarea {
 	font-size: 1em; /* Adjust this value as needed */
 	font-weight: bold; /* Optional, adjust as needed */
 	margin-top: 2em;
+	margin-left: 1em;
 }
 
 .smaller-header {
