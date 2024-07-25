@@ -1,45 +1,38 @@
-document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('contact-form').addEventListener('submit', function(e) {
-        e.preventDefault();
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-        const form = e.target;
-        const formData = new FormData(form);
-        const jsonData = {};
+    const form = e.target;
+    const formData = new FormData(form);
+    const formMessage = document.getElementById('form-message');
 
-        formData.forEach((value, key) => jsonData[key] = value);
+    const jsonData = {};
+    formData.forEach((value, key) => jsonData[key] = value);
 
-        fetch(form.action, {
+    try {
+        const response = await fetch(form.action, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(jsonData),
-        })
-        .then(response => {
-            console.log(response);
-            return response.json();
-        })
-        .then(data => {
-            console.log(data); 
-            const formMessage = document.getElementById('form-message');
-            if (data.success) {
-                formMessage.style.display = 'block';
-                formMessage.textContent = 'Message sent successfully!';
-                formMessage.style.color = 'green';
-                form.reset();
-            } else {
-                formMessage.style.display = 'block';
-                formMessage.textContent = 'There was a problem sending the message.';
-                formMessage.style.color = 'red';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            const formMessage = document.getElementById('form-message');
-            formMessage.style.display = 'block';
-            formMessage.textContent = 'There was a problem sending the message.';
-            formMessage.style.color = 'red';
         });
-    });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            formMessage.style.display = 'block';
+            formMessage.textContent = 'Message sent successfully!';
+            formMessage.style.color = 'green';
+            form.reset();
+        } else {
+            formMessage.style.display = 'block';
+            formMessage.textContent = 'There was a problem sending the message: ' + data.message;
+            formMessage.style.color = 'red';
+        }
+    } catch (error) {
+        formMessage.style.display = 'block';
+        formMessage.textContent = 'There was a problem sending the message: ' + error.message;
+        formMessage.style.color = 'red';
+    }
 });
 
