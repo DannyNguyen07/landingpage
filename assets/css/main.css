@@ -2977,17 +2977,13 @@ input, select, textarea {
 }
 
 
-@media (max-width: 1280px) {
-	.smaller-about {
-		margin-left: 5px;
-	}
-}
-
-@media (max-width: 1920px) {
+@media (min-width: 769px) and (max-width: 1280px) {
 	.smaller-about {
 		margin-left: 18px;
 	}
 }
+
+
 
 .smaller-header {
 	font-size: 1.5em; 
