@@ -2963,15 +2963,15 @@ input, select, textarea {
 
 		}
 .smaller-about {
-	font-size: 1em; /* Adjust this value as needed */
-	font-weight: bold; /* Optional, adjust as needed */
+	font-size: 1em; 
+	font-weight: bold; 
 	margin-top: 2em;
-	margin-left: 1em;
+	margin-left: 18px;
 }
 
 .smaller-header {
-	font-size: 1.5em; /* Adjust this value as needed */
-	font-weight: bold; /* Optional, adjust as needed */
+	font-size: 1.5em; 
+	font-weight: bold; 
 	text-align: center;
 }
 
